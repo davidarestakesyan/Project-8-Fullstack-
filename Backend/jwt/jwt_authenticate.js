@@ -34,34 +34,6 @@ function authenticateAdminToken(req, res, next) {
   }
 
 
-  // function checkStatusUser(req, res, next) {
-  //   const token = req.headers.authorization
-  
-  //   User.findOne({
-  //     where: {  },
-  //   }).then(user => {
-  //     if (!user || user.status !== 'user') {
-  //       return res.sendStatus(403)
-  //     }
-  //     next()
-  //   }).catch(err => {
-  //     console.error(err)
-  //     return res.sendStatus(500)
-  //   })
-  // }
-
-
-
-
-
-
-
-//   jwt.verify(token, SECRET, (err, user)=>{
-//     if(err){
-//       return res.sendStatus(403)
-//   }
-//   next()
-// })
 
 
   
