@@ -5,18 +5,18 @@ const productController = require('../controllers/products');
 
 
  // Get all products
-router.get('/', productController.getAllProducts);
+router.get('/products', productController.getAllProducts);
 
 // Get a single product by ID
-router.get('/:id', productController.getProductById);
+router.get('/product:id', productController.getProductById);
 
 // Create a new product
 router.post('/createproduct',jwt_authenticate.authenticateAdminToken,productController.createProduct);
 
 // Update an existing product by ID
-router.put('/update/:id',jwt_authenticate.authenticateAdminToken, productController.updateProduct);
+router.put('/updateproduct/:id',jwt_authenticate.authenticateAdminToken, productController.updateProduct);
 
 // Delete an existing product by ID
-router.delete('/delete/:id',jwt_authenticate.authenticateAdminToken,productController.deleteProduct);
+router.delete('/deleteproduct/:id',jwt_authenticate.authenticateAdminToken,productController.deleteProduct);
 
 module.exports = router;

@@ -4,8 +4,7 @@ const SECRET = process.env.SECRET;
 
 function authenticateAdminToken(req, res, next) {
     const token = req.headers.authorization;
-    const decoded = jwt.decode(token)
-    const username = decoded.username
+
     console.log(token);
     if (token == null){
         return res.sendStatus(401)
@@ -16,22 +15,15 @@ function authenticateAdminToken(req, res, next) {
         return res.sendStatus(403)
       }
         console.log(user);
-        // if(user.username === "admin" && user.role === 1){
-        //   next()
-        // }
+        if(user.username === "admin" && user.role === 1){
+          next()
+        } 
+        else {
+          return res.sendStatus(403)
+      
+        }
     })
-      User.findOne({
-    where: { username },
-  }).then(user => {
-    if (!user || user.username !== 'admin') {
-      return res.sendStatus(403)
-    }
-    next()
-  }).catch(err => {
-    console.error(err)
-    return res.sendStatus(500)
-  })
-  }
+   }
 
 
 

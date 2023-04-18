@@ -1,4 +1,4 @@
-const Product = require('../models/product');
+const {Product} = require('../models');
 
 // Get all products
 async function getAllProducts (req, res) {
@@ -28,9 +28,9 @@ async function getProductById (req, res) {
 
 // Create a new product
 async function createProduct(req, res) {
-  const { name, image, discription, price, categoryId } = req.body;
+  const { name, image, description, price, categoryId } = req.body;
   try {
-    const product = await Product.create({ name, image, discription, price, categoryId });
+    const product = await Product.create({ name, image, description, price, categoryId });
     res.json(product);
   } catch (err) {
     console.error(err.message);
@@ -40,7 +40,7 @@ async function createProduct(req, res) {
 
 // Update an existing product by ID
 async function updateProduct(req, res) {
-  const { name, image, discription, price, categoryId } = req.body;
+  const { name, image, description, price, categoryId } = req.body;
   try {
     const product = await Product.findByPk(req.params.id);
     if (!product) {
@@ -48,7 +48,7 @@ async function updateProduct(req, res) {
     }
     product.name = name;
     product.image = image;
-    product.description = discription;
+    product.description = description;
     product.price = price;
     product.categoryId = categoryId
     await product.save();
