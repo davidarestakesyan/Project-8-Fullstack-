@@ -2,5 +2,6 @@ const express = require('express');
 const router = express.Router();
 const productRouter = require ("./products")
 const userRouter = require ("./users")
-router.use(productRouter,userRouter)
+const categoryRouter = require ("./category")
+router.use(productRouter,userRouter,categoryRouter)
 module.exports = router;

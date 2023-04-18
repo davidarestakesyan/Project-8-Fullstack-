@@ -5,7 +5,7 @@ const productController = require('../controllers/products');
 
 
  // Get all products
-router.get('/products', productController.getAllProducts);
+router.get('/allproducts', productController.getAllProducts);
 
 // Get a single product by ID
 router.get('/product:id', productController.getProductById);
