@@ -6,13 +6,13 @@ const jwt_generate = require ("../jwt/jwt_generate")
 // Create a new user
 const createUser = async (req, res) => {
   const { username, password} = req.body;
-  const hashed_password = await bcrypt.hash(password, 10);
-
+  // const hashed_password = await bcrypt.hash(password, 10);
+  // res.header('Access-Control-Allow-Origin', '*');
+  // res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
   try {
-    
+    const hashed_password = await bcrypt.hash(password, 10);
     const user = await User.create({ username, password:hashed_password });
-    res.status(201).json(user);
-    const token = jwt_generate.generateAccessToken(username);
+    res.status(201).json({message:"Created"});
       } catch (error) {
         res.status(500).json({ error: error.message });
       }
@@ -24,7 +24,8 @@ const createUser = async (req, res) => {
       async function loginUser(req, res) {
         const username = req.body.username;
         const password = req.body.password;
-      
+        res.header('Access-Control-Allow-Origin', '*');
+        res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
         try {
          
           const user = await User.findOne({ where: { username } });
@@ -49,6 +50,9 @@ const createUser = async (req, res) => {
 
 // Get all users
 const getAllUsers = async (req, res) => {
+  
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   try {
     const users = await User.findAll();
     res.json(users);

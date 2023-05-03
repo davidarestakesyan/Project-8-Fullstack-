@@ -4,6 +4,8 @@ const Category = db.Category;
 
  // show category
 const getCategory = async (req, res) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     try {
       const category = await Category.findAll();
       res.json(category);
